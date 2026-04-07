@@ -99,7 +99,7 @@ function Home() {
     recognitionRef.current = recognition;
 
     let isMounted = true;
-    const starttimeout = setTimeout(() => {
+    const startTimeout = setTimeout(() => {
       if(isMounted && !isRecognizingRef.current && !isSpeakingRef.current){
         try{
           recognition.start();
