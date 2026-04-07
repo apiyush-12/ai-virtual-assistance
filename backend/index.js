@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(cors({
-    origin: "http://virtual-assistance-phi.vercel.app",
+    origin: "https://virtual-assistance-9ypu.onrender.com",
     credentials: true
 }));
 
