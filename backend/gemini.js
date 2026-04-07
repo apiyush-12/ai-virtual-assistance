@@ -187,13 +187,20 @@ User: "${command}"
     });
     return result.data.candidates[0].content.parts[0].text;
   } catch (error) {
-      console.log("Error fetching Gemini response:", error.response?.data || error.message);
-      return JSON.stringify({
+      console.log("Gemini error:", error.response?.data || error.message);
+      if (error.response?.status === 429) {
+        return JSON.stringify({
         type: "general",
         userInput: command,
-        response: "Sorry, I'm a bit busy right now. Please try again in a moment."
+        response: "Too many requests. Please wait a few seconds."
       });
     }
+    return JSON.stringify({
+      type: "general",
+      userInput: command,
+      response: "Something went wrong."
+    });
+  }
 };
 
 export default geminiResponse;
