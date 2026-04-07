@@ -19,7 +19,7 @@ function Home() {
 
   const handleLogout = async () => {
     try{
-      const result = await axios.get(`${serverUrl}/api/auth/logout`,{withCredentials: true});
+      const result = await axios.post(`${serverUrl}/api/auth/logout`,{withCredentials: true});
       setUserData(null);
       navigate("/signIn");
 
