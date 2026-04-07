@@ -11,7 +11,7 @@ import { LuImagePlus } from "react-icons/lu";
 import { useRef } from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { userDataContext } from '../context/userContext.jsx';
+import { userDataContext } from '../context/UserContext.jsx';
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useContext } from 'react';
 
