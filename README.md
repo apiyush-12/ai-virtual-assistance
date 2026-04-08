@@ -43,6 +43,7 @@ A full-stack AI-powered voice assistant that understands voice commands, process
 * Node.js
 * Express.js
 * MongoDB
+* Cloudinary
 * Gemini API (Google AI)
 
 ### Deployment
