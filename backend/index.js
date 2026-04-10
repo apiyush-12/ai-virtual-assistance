@@ -5,7 +5,6 @@ import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import uploadOnCloudinary from "./config/cloudinary.js";
 import geminiResponse from "./gemini.js";
 
 dotenv.config();
@@ -13,27 +12,36 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// Middleware
+// ✅ CORS (FIXED)
 app.use(cors({
-    origin: "https://virtual-assistance-9ypu.onrender.com",
-    credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://virtual-assistance-9ypu.onrender.com"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
+// ✅ HANDLE PREFLIGHT REQUESTS (VERY IMPORTANT 🔥)
+app.options("*", cors());
+
+// ✅ MIDDLEWARE
 app.use(express.json());
 app.use(cookieParser());
+
+// ✅ ROUTES
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 
-
-
-// Routes
+// ✅ TEST ROUTE
 app.get("/", async (req, res) => {
-    let prompt = req.query.prompt;
-    let data = await geminiResponse(prompt);
-    res.json(data);
+  let prompt = req.query.prompt;
+  let data = await geminiResponse(prompt);
+  res.json(data);
 });
 
-// Start server AFTER DB connection
+// ✅ START SERVER
 connectDb()
   .then(() => {
     app.listen(PORT, () => {
