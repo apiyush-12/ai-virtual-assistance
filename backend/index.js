@@ -23,9 +23,6 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// ✅ HANDLE PREFLIGHT REQUESTS (VERY IMPORTANT 🔥)
-app.options("*", cors());
-
 // ✅ MIDDLEWARE
 app.use(express.json());
 app.use(cookieParser());
